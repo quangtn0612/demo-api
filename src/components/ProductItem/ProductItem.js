@@ -1,5 +1,6 @@
 import React, { useState, useEffect, Component } from 'react';
-import axios from 'axios';
+import callApi from '../../utils/apiCaller'
+import { Link } from 'react-router-dom';
 
 class ProductItem extends Component {
   render(){
@@ -7,9 +8,7 @@ class ProductItem extends Component {
     return(
       <tr>
           <th scope="row">{product.id}</th>
-          <td>{product.code}</td>
           <td>{product.name}</td>
-          <td>{product.desc}</td>
           <td>{product.price}</td>
           <td>
             <span className = {`badge badge-${product.status ? 'warning' : 'default'}`}>
@@ -17,42 +16,20 @@ class ProductItem extends Component {
             </span>
           </td>
           <td>
-            <button className="btn btn-primary">Edit</button>
-            <button className="btn btn-danger">Delete</button>
+            <Link to={`/product/${product.id}/edit`} className="btn btn-primary">Edit</Link>
+            <button className="btn btn-danger" onClick = {()=>this.onDelete(product.id)}>Delete</button>
           </td>
         </tr>
-  
-      /* {product.map((item) => (
-        <tr>
-          <th scope="row">{item.id}</th>
-          <td>{item.code}</td>
-          <td>{item.name}</td>
-          <td>{item.desc}</td>
-          <td>{item.price}</td>
-          <td>
-            <span className = {`badge badge-${item.status ? 'warning' : 'default'}`}>
-              {item.status ? 'Available' : 'Sold out'}
-            </span>
-          </td>
-          <td>
-            <button className="btn btn-primary">Edit</button>
-            <button className="btn btn-danger">Delete</button>
-          </td>
-        </tr>)
-      )} */
     )
   }
+  onDelete(id){
+    if(confirm('Are you sure to delete this item?')) //eslint-disable-line
+    {
+      this.props.onDelete(id);
+    }
+  }
+  onEdit(id){
 
-  // const [products, setProducts] = useState([])
-  // useEffect(() => {
-  //   console.log('effect');
-  //   axios
-  //     .get('http://localhost:3001/products')
-  //     .then((res, req) => {
-  //       console.log('promise fulfilled');
-  //       setProducts(res.data)
-  //     })
-  // }, [])
-  
+  }
 }
 export default ProductItem;

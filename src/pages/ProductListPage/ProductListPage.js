@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import ProductItem from '../../components/ProductItem/ProductItem';
 import ProductList from '../../components/ProductList/ProductList';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+
 import axios from 'axios';
 import callApi from '../../utils/apiCaller';
 
@@ -18,14 +20,40 @@ class ProductListPage extends Component {
                 products: res.data
             })
         })
+    };
+
+    onDelete = (id) => {
+        const { products } = this.state;
+        callApi(`products/${id}`,'DELETE',null).then(res => {
+            if(res.status === 200){ //done
+                var index = this.findIndex(products, id);
+                if(index!== -1){
+                    products.splice(index, 1);
+                    this.setState({
+                        products: products
+                    })
+                }
+            }
+    })};
+    
+    findIndex = (products, id) => {
+        var result = -1;
+        products.forEach((product,index) =>{
+            if(product.id === id){
+                result = index
+            }
+        })
+        return result;
     }
+
+
     render() {
         // var { products } = this.props;
         const { products } = this.state;
 
         return <div className="container">
-            <h1>Home</h1>
-            <button className="btn btn-primary">Add product</button>
+            <h1 className ="m-2">Product</h1>
+            <Link className="btn btn-primary" to="/product/add">Add product</Link>
             <ProductList>
                 {this.showProducts(products)}
             </ProductList>
@@ -41,6 +69,7 @@ class ProductListPage extends Component {
                         key={index}
                         product={product}
                         index={index}
+                        onDelete={this.onDelete}
                     />
                 )
             })
