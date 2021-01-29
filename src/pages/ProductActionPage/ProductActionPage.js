@@ -15,18 +15,21 @@ class ProductActionPage extends Component {
 
     componentDidMount() {
         const { match } = this.props;
-        const id = match.params.id; //get product id
-        const { name, price, status } = this.state;
-        callApi(`products/${id}`, 'GET', null).then((res) => {
-            this.setState({
-                id: res.data.id,
-                name: res.data.name,
-                price: res.data.price,
-                status: res.data.status
+        if(match){
+            const id = match.params.id; //get product id
+            const { name, price, status } = this.state;
+            callApi(`products/${id}`, 'GET', null).then((res) => {
+                this.setState({
+                    id: res.data.id,
+                    name: res.data.name,
+                    price: res.data.price,
+                    status: res.data.status
+                })
+            }).catch((err) => {
+                console.log(err);
             })
-        }).catch((err) => {
-            console.log(err);
-        })
+        }
+        
     }
 
     onChange = (e) => {
