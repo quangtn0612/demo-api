@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
-import ProductItem from '../../components/ProductItem/ProductItem';
-import ProductList from '../../components/ProductList/ProductList';
-import { connect } from 'react-redux';
+import ProductItem from '../components/ProductItem';
+import ProductList from '../components/ProductList';
 import { Link } from 'react-router-dom';
-
-import axios from 'axios';
-import callApi from '../../utils/apiCaller';
+import callApi from '../utils/apiCaller';
 
 class ProductListPage extends Component {
     constructor() {
@@ -78,10 +75,5 @@ class ProductListPage extends Component {
     }
 }
 
-const mapStateToProps = state => {
-    return {
-        products: state.products
-    }
-}
 
-export default connect(mapStateToProps, null)(ProductListPage);
+export default ProductListPage;

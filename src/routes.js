@@ -1,8 +1,8 @@
 import React from 'react';
-import HomePage from './pages/HomePage/HomePage'
-import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
-import ProductActionPage from './pages/ProductActionPage/ProductActionPage';
-import ProductListPage from './pages/ProductListPage/ProductListPage';
+import HomePage from './pages/HomePage'
+import NotFoundPage from './pages/NotFoundPage';
+import ProductActionPage from './pages/ProductActionPage';
+import ProductListPage from './pages/ProductListPage';
 
 const routes = [
     {

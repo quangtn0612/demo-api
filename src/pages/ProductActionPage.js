@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import callApi from '../../utils/apiCaller';
+import callApi from '../utils/apiCaller';
 import { Link } from 'react-router-dom';
 
 class ProductActionPage extends Component {

@@ -1,5 +1,4 @@
 import React, { useState, useEffect, Component } from 'react';
-import callApi from '../../utils/apiCaller'
 import { Link } from 'react-router-dom';
 
 class ProductItem extends Component {

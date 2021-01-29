@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import Menu from './components/Menu/Menu';
-
+import Menu from './components/Menu';
+import routes from './routes';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Link
 } from "react-router-dom";
-import routes from './routes';
+
 
 
 class App extends Component {
